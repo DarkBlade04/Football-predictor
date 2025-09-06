@@ -1,0 +1,90 @@
+# Football Predictor Configuration
+# API Configuration
+apis:
+  api_football:
+    base_url: "https://v3.football.api-sports.io"
+    rate_limit: 100  # requests per day for free tier
+    timeout: 30
+    
+  sofascore:
+    base_url: "https://api.sofascore.com/api/v1"
+    timeout: 20
+    
+  footystats:
+    base_url: "https://footystats.org"
+    timeout: 25
+    
+  openweather:
+    base_url: "https://api.openweathermap.org/data/2.5"
+    timeout: 15
+    
+  news:
+    google_news_rss: "https://news.google.com/rss/search"
+    timeout: 20
+
+# Prediction Settings
+prediction:
+  confidence_threshold: 60.0
+  max_sources: 10
+  min_data_sources: 3
+  form_games: 10  # Number of recent games to consider
+  
+  # Model weights
+  weights:
+    recent_form: 0.25
+    head_to_head: 0.15
+    home_advantage: 0.12
+    player_injuries: 0.18
+    xg_stats: 0.15
+    market_odds: 0.10
+    tactical_factors: 0.05
+
+# Leagues Configuration
+leagues:
+  premier_league: 39
+  la_liga: 140
+  bundesliga: 78
+  serie_a: 135
+  ligue_1: 61
+  champions_league: 2
+  europa_league: 3
+  league_one: 144  # England League One
+  uefa_wcq: 960
+
+# Match Fetching
+fetching:
+  days_ahead: 7
+  default_season: 2024
+  max_matches_per_run: 50
+  retry_attempts: 3
+  delay_between_requests: 1.0
+
+# Output Settings
+output:
+  formats: ['telegram', 'csv', 'json', 'docx']
+  save_history: true
+  cleanup_temp_files: true
+  
+  telegram:
+    send_predictions: true
+    send_results: true
+    daily_summary: true
+    
+  reports:
+    include_plots: true
+    include_confidence: true
+    include_risks: true
+
+# Logging
+logging:
+  level: INFO
+  max_file_size: 10MB
+  backup_count: 5
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Performance (Termux optimized)
+performance:
+  max_concurrent_requests: 5
+  memory_limit_mb: 512
+  cache_expiry_hours: 24
+  use_compression: true
